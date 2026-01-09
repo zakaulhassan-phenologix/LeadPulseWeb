@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <title>Apollo – Organization Search</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- jQuery (MUST come first) -->
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <!-- Toastr CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
+
+        <!-- Toastr JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+        <link rel="stylesheet" href="../Css/dashboard.css">
+        <link rel="stylesheet" href="../Css/apollo_organization_search.css">
+</head>
+
+<body>
+
+        <script src="../JS/sidebar_navbar.js"></script>
+
+        <div class="main-content">
+                <div class="container-fluid p-4" style="max-width:1400px">
+
+                        <div class="card">
+                                <div class="card-header d-flex align-items-center gap-2">
+                                        <button class="btn btn-outline-secondary btn-sm" onclick="history.back()">←
+                                                Back</button>
+                                        <h5 class="mb-0">Apollo – Organization Search</h5>
+                                </div>
+
+                                <div class="card-body">
+                                        <!-- FILTERS -->
+                                        <div class="row g-3 mb-4">
+                                                <div class="col-md-3"><label class="filter-label">Organization
+                                                                Name</label><input id="QOrganizationName"
+                                                                class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Keyword
+                                                                Tags</label><input id="QOrganizationKeywordTags"
+                                                                class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Employees
+                                                                Range</label><input id="OrganizationNumEmployeesRanges"
+                                                                class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Organization
+                                                                Location</label><input id="OrganizationLocations"
+                                                                class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Exclude
+                                                                Location</label><input id="OrganizationNotLocations"
+                                                                class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Technology
+                                                                UID</label><input id="CurrentlyUsingAnyOfTechnologyUids"
+                                                                class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Organization
+                                                                IDs</label><input id="OrganizationIds"
+                                                                class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Job
+                                                                Titles</label><input id="QOrganizationJobTitles"
+                                                                class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Job
+                                                                Locations</label><input id="OrganizationJobLocations"
+                                                                class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Revenue
+                                                                Min</label><input id="RevenueRangeMin" type="number"
+                                                                class="form-control" value="0"></div>
+                                                <div class="col-md-3"><label class="filter-label">Revenue
+                                                                Max</label><input id="RevenueRangeMax" type="number"
+                                                                class="form-control" value="0"></div>
+                                                <div class="col-md-3"><label class="filter-label">Latest Funding
+                                                                Min</label><input id="LatestFundingAmountRangeMin"
+                                                                type="number" class="form-control" value="0"></div>
+                                                <div class="col-md-3"><label class="filter-label">Latest Funding
+                                                                Max</label><input id="LatestFundingAmountRangeMax"
+                                                                type="number" class="form-control" value="0"></div>
+                                                <div class="col-md-3"><label class="filter-label">Total Funding
+                                                                Min</label><input id="TotalFundingRangeMin"
+                                                                type="number" class="form-control" value="0"></div>
+                                                <div class="col-md-3"><label class="filter-label">Total Funding
+                                                                Max</label><input id="TotalFundingRangeMax"
+                                                                type="number" class="form-control" value="0"></div>
+                                                <div class="col-md-3"><label class="filter-label">Latest Funding Date
+                                                                Min</label><input id="LatestFundingDateRangeMin"
+                                                                type="date" class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Latest Funding Date
+                                                                Max</label><input id="LatestFundingDateRangeMax"
+                                                                type="date" class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Jobs Count
+                                                                Min</label><input id="OrganizationNumJobsRangeMin"
+                                                                type="number" class="form-control" value="0"></div>
+                                                <div class="col-md-3"><label class="filter-label">Jobs Count
+                                                                Max</label><input id="OrganizationNumJobsRangeMax"
+                                                                type="number" class="form-control" value="0"></div>
+                                                <div class="col-md-3"><label class="filter-label">Job Posted Date
+                                                                Min</label><input id="OrganizationJobPostedAtRangeMin"
+                                                                type="date" class="form-control"></div>
+                                                <div class="col-md-3"><label class="filter-label">Job Posted Date
+                                                                Max</label><input id="OrganizationJobPostedAtRangeMax"
+                                                                type="date" class="form-control"></div>
+
+                                                <div class="col-md-2"><label class="filter-label">Page</label><input
+                                                                id="Page" type="number" class="form-control" value="1"
+                                                                min="1"></div>
+                                                <div class="col-md-2"><label class="filter-label">Per Page</label><input
+                                                                id="PerPage" type="number" class="form-control"
+                                                                value="5" min="1"></div>
+                                        </div>
+
+                                        <!-- BUTTONS -->
+                                        <button id="searchBtn" class="btn btn-primary">
+                                                <i class="bi bi-search"></i> Search
+                                        </button>
+
+                                        <button id="clearBtn" class="btn btn-secondary ms-2">
+                                                <i class="bi bi-x-circle"></i> Clear
+                                        </button>
+
+                                        <hr>
+
+                                        <!-- RESULTS -->
+                                        <div id="resultsInfo" class="text-muted mb-2"></div>
+                                        <div id="organizationResults" class="d-flex flex-column gap-3"></div>
+
+                                        <!-- PAGINATION -->
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                                <button id="prevPage" class="btn btn-outline-secondary btn-sm">
+                                                        ← Previous
+                                                </button>
+
+                                                <span id="pageInfo" class="text-muted small"></span>
+
+                                                <button id="nextPage" class="btn btn-outline-secondary btn-sm">
+                                                        Next →
+                                                </button>
+                                        </div>
+
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <!-- MODAL -->
+        <div class="modal fade" id="orgModal" tabindex="-1">
+                <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title" id="orgModalTitle"></h5>
+                                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body" id="orgModalBody"></div>
+                        </div>
+                </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../JS/apollo_organization_search.js"></script>
+
+</body>
+
+</html>

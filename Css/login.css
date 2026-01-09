@@ -1,0 +1,49 @@
+/* Custom Variable */
+:root {
+    --primary-dark: #234b8c;
+}
+
+body {
+    background-color: #f0f2f5;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+}
+
+/* Override Bootstrap Primary Button */
+.btn-primary {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1a3869; /* Slightly darker shade for hover */
+    border-color: #1a3869;
+}
+
+/* Custom link color */
+a {
+    color: var(--primary-dark);
+}
+
+a:hover {
+    color: #1a3869;
+}
+
+/* Input focus ring color */
+.form-control:focus {
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 0.25rem rgba(35, 75, 140, 0.25);
+}

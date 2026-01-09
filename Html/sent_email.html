@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sent Emails</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../Css/dashboard.css">
+</head>
+
+<body>
+
+    <div id="sidebar-container"></div>
+
+    <div class="main-content">
+        <div class="container-fluid p-4">
+            <div class="card shadow-sm">
+
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-outline-secondary btn-sm" onclick="history.back()">← Back</button>
+                        <h5 class="mb-0">Sent Emails</h5>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <select id="statusFilter" class="form-select form-select-sm">
+                            <option value="">All</option>
+                            <option value="Sent">Sent</option>
+                            <option value="Scheduled">Scheduled</option>
+                            <option value="Skipped">Skipped</option>
+                        </select>
+
+                        <input id="searchInput" class="form-control form-control-sm" placeholder="Search">
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <p class="text-muted" id="totalCount"></p>
+
+                    <!-- ONE LINE LIST -->
+                    <div id="emailList" class="list-group"></div>
+
+                    <nav class="mt-4">
+                        <ul class="pagination justify-content-center" id="pagination"></ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../JS/sidebar_navbar.js"></script>
+    <script src="../JS/sent_email.js"></script>
+
+</body>
+
+</html>

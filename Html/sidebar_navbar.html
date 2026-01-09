@@ -1,0 +1,129 @@
+<div class="sidebar d-flex flex-column bg-dark vh-100 p-3 position-fixed" style="width:260px;">
+    <!-- Brand -->
+    <div class="sidebar-header mb-4 text-center">
+        <h4 class="text-white fw-bold m-0">
+            <i class="bi bi-lightning-fill text-warning me-2"></i>LeadPulse
+        </h4>
+    </div>
+
+    <!-- Navigation -->
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a class="nav-link text-white" href="dashboard.html">
+                <i class="bi bi-speedometer2 me-2"></i> Dashboard
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link text-white" href="company.html">
+                <i class="bi bi-building me-2"></i> Company Details
+            </a>
+        </li>
+
+        <!-- Email Section -->
+        <li class="nav-item mt-2">
+            <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                href="#emailMenu">
+                <span><i class="bi bi-envelope me-2"></i> Email</span>
+                <i class="bi bi-chevron-down"></i>
+            </a>
+
+            <ul class="collapse nav flex-column ms-3 mt-1" id="emailMenu">
+                <li class="nav-item">
+                    <a class="nav-link text-white text-nowrap d-flex align-items-center" href="email_settings.html">
+                        <i class="bi bi-gear me-2"></i>
+                        <span>Email Settings</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white text-nowrap d-flex align-items-center" href="sent_email.html">
+                        <i class="bi bi-send me-2"></i>
+                        <span>Sent Emails</span>
+                    </a>
+                </li>
+                <!-- New Inbox Link -->
+                <li class="nav-item">
+                    <a class="nav-link text-white text-nowrap d-flex align-items-center" href="replied_email.html">
+                        <i class="bi bi-inbox me-2"></i>
+                        <span>Inbox</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        <!-- LinkedIn -->
+        <li class="nav-item mt-2">
+            <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                href="#linkedinMenu">
+                <span><i class="bi bi-linkedin me-2"></i> LinkedIn</span>
+                <i class="bi bi-chevron-down"></i>
+            </a>
+
+            <ul class="collapse nav flex-column ms-3 mt-1" id="linkedinMenu">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="linkedin_post_upload.html">
+                        <i class="bi bi-upload me-2"></i> Upload Posts
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="linkedin_posts.html">
+                        <i class="bi bi-file-earmark-text me-2"></i> Post List
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        <!-- Apollo -->
+        <li class="nav-item mt-2">
+            <a class="nav-link text-white d-flex justify-content-between align-items-center" data-bs-toggle="collapse"
+                href="#apolloMenu">
+                <span><i class="bi bi-rocket-takeoff me-2"></i> Apollo</span>
+                <i class="bi bi-chevron-down"></i>
+            </a>
+
+            <ul class="collapse nav flex-column ms-3 mt-1" id="apolloMenu">
+                <li class="nav-item">
+                    <a class="nav-link text-white text-nowrap d-flex align-items-center"
+                        href="apollo_organization_search.html">
+                        <i class="bi bi-building me-2"></i>
+                        <span>Organization Search</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white text-nowrap d-flex align-items-center"
+                        href="apollo_people_search.html">
+                        <i class="bi bi-person-lines-fill me-2"></i>
+                        <span>People Search</span>
+                    </a>
+                </li>
+
+                <!-- New Section: Existing Leads -->
+                <li class="nav-item">
+                    <a class="nav-link text-white text-nowrap d-flex align-items-center"
+                        href="apollo_existing_leads.html">
+                        <i class="bi bi-journal-check me-2"></i>
+                        <span>Existing Leads</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+    </ul>
+
+    <hr class="text-secondary">
+
+    <!-- User Profile -->
+    <div class="d-flex align-items-center gap-2 mb-3 px-2">
+        <img id="userAvatar" src="https://ui-avatars.com/api/?name=User" class="rounded-circle" width="38" height="38">
+        <span id="displayUserName" class="text-white small">Loading...</span>
+    </div>
+
+    <!-- Logout -->
+    <a class="nav-link text-danger" href="#" data-logout>
+        <i class="bi bi-box-arrow-left me-2"></i> Logout
+    </a>
+</div>
