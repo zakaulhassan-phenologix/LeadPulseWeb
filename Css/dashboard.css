@@ -57,3 +57,32 @@ body {
     color: #1e293b;
     font-weight: 500;
 }
+
+.linkedin-connect-btn {
+    background: linear-gradient(135deg, #0a66c2, #004182);
+    border: none;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+}
+
+.linkedin-connect-btn:hover {
+    background: linear-gradient(135deg, #004182, #0a66c2);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(10, 102, 194, 0.35);
+}
+
+.linkedin-connect-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 16px rgba(10, 102, 194, 0.25);
+}
+
+.linkedin-icon {
+    font-size: 1.2rem;
+    transition: transform 0.25s ease;
+}
+
+.linkedin-connect-btn:hover .linkedin-icon {
+    transform: scale(1.1);
+}
