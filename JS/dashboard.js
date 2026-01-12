@@ -82,7 +82,6 @@ async function connectLinkedIn() {
         // Redirect in SAME TAB
         window.location.href = result.data.auth_url;
 
-
     } catch (err) {
         console.error("LinkedIn connect error:", err);
         alert("Unable to connect LinkedIn. Please try again.");
