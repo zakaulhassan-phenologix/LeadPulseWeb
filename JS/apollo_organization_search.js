@@ -124,11 +124,34 @@ async function searchOrganizations() {
             body: JSON.stringify(payload)
         });
 
-        if (!response.ok) throw new Error("API error");
-
         const res = await response.json();
 
-        if (!res.status || !res.data.organizations.length) {
+        // If API fails or returns false status
+        if (!response.ok || !res.status) {
+            let errorMsg = "Failed to fetch organizations";
+
+            if (res.message) {
+                try {
+                    // Check if message contains JSON string with "error"
+                    const parsedMsg = JSON.parse(res.message.replace(/^Failed to search organizations\s*/, ""));
+                    if (parsedMsg.error) {
+                        errorMsg = parsedMsg.error; // This will contain your "insufficient credits" message with link
+                    } else {
+                        errorMsg = res.message;
+                    }
+                } catch {
+                    errorMsg = res.message; // fallback plain message
+                }
+            }
+
+            // Show in toastr (to allow HTML links)
+            toastr.error(errorMsg, '', { escapeHtml: false, timeOut: 10000 });
+            info.textContent = "";
+            return;
+        }
+
+        // If no organizations
+        if (!res.data.organizations.length) {
             info.textContent = "No organizations found";
             saveResults([]);
             document.getElementById("prevPage").disabled = true;
@@ -138,6 +161,7 @@ async function searchOrganizations() {
             return;
         }
 
+        // Render organizations
         renderOrganizations(res.data.organizations);
         info.textContent = `Showing ${res.data.organizations.length} organization(s)`;
         saveResults(res.data.organizations);
@@ -150,7 +174,7 @@ async function searchOrganizations() {
 
     } catch (err) {
         console.error(err);
-        toastr.error("Failed to fetch organizations");
+        toastr.error("Failed to fetch organizations: " + err.message);
     }
 }
 

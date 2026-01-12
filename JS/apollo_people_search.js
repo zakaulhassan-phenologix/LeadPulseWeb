@@ -221,8 +221,24 @@ function renderPeople(list) {
                 });
 
                 const data = await response.json();
+                debugger;
                 if (!data?.status) {
-                    modalBody.innerHTML = `<p class="text-danger">${data.message || 'Unauthorized access'}</p>`;
+                    let errorMessage = 'Unauthorized access';
+
+                    if (data.message) {
+                        // Try to extract the "error" field from the string
+                        const match = data.message.match(/"error"\s*:\s*"(.*)"/);
+                        if (match && match[1]) {
+                            // Replace escaped characters like \u003c with real ones
+                            errorMessage = match[1].replace(/\\u003c/g, '<').replace(/\\u003e/g, '>').replace(/\\'/g, "'");
+                        } else {
+                            // fallback
+                            errorMessage = data.message;
+                        }
+                    }
+
+                    // Render as HTML with clickable link
+                    modalBody.innerHTML = `<p class="text-danger">${errorMessage}</p>`;
                     return;
                 }
 
