@@ -54,18 +54,33 @@ document.addEventListener("DOMContentLoaded", () => {
             content = content.replace(/(#\w+)/g, '<strong class="hashtag">$1</strong>');
             content = content.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
 
+            // Article block
+            let articleHTML = "";
+            if (post.PostType === "article") {
+                articleHTML = `
+                <div class="article-card border p-2 mb-2">
+                    ${post.ArticleTitle ? `<h6 class="article-title mb-1"><a href="${post.ArticleSourceLink}" target="_blank">${post.ArticleTitle}</a></h6>` : ""}
+                    ${post.ArticleDescription ? `<p class="article-description mb-1">${post.ArticleDescription}</p>` : ""}
+                    ${post.ArticleSourceLink ? `<a href="${post.ArticleSourceLink}" target="_blank" class="text-primary small">Read more</a>` : ""}
+                </div>
+            `;
+            }
+
             postsContainer.innerHTML += `
-                <div class="card mb-3 post-card">
-                    <div class="card-body post-content">
-                        ${currentTab === "scheduled" ? `<i class="bi bi-trash delete-btn" onclick="confirmDelete(${post.Id})"></i>` : ""}
-                        <p>${content}</p>
-                        ${post.ImageUrl ? `<img src="${post.ImageUrl}" class="post-media">` : ""}
-                        ${post.VideoUrl ? `<video src="${post.VideoUrl}" controls class="post-media"></video>` : ""}
-                        <div class="card-footer mt-2">${currentTab === "scheduled" ? `Scheduled: ${formatDate(post.ScheduledTime)}` : `Published: ${formatDate(post.PublishedAt)}`}</div>
-                    </div>
-                </div>`;
+            <div class="card mb-3 post-card">
+                <div class="card-body post-content">
+                    ${currentTab === "scheduled" ? `<i class="bi bi-trash delete-btn" onclick="confirmDelete(${post.Id})"></i>` : ""}
+                    <p>${content}</p>
+                    ${articleHTML}
+                    ${post.ImageUrl ? `<img src="${post.ImageUrl}" class="post-media mt-2">` : ""}
+                    ${post.VideoUrl ? `<video src="${post.VideoUrl}" controls class="post-media mt-2"></video>` : ""}
+                    <div class="card-footer mt-2">${currentTab === "scheduled" ? `Scheduled: ${formatDate(post.ScheduledTime)}` : `Published: ${formatDate(post.PublishedAt)}`}</div>
+                </div>
+            </div>
+        `;
         });
     }
+
 
     // ================= DELETE =================
     window.confirmDelete = function (postId) {
