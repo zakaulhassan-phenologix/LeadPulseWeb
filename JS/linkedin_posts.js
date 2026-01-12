@@ -58,12 +58,14 @@ document.addEventListener("DOMContentLoaded", () => {
             let articleHTML = "";
             if (post.PostType === "article") {
                 articleHTML = `
-                <div class="article-card border p-2 mb-2">
-                    ${post.ArticleTitle ? `<h6 class="article-title mb-1"><a href="${post.ArticleSourceLink}" target="_blank">${post.ArticleTitle}</a></h6>` : ""}
-                    ${post.ArticleDescription ? `<p class="article-description mb-1">${post.ArticleDescription}</p>` : ""}
-                    ${post.ArticleSourceLink ? `<a href="${post.ArticleSourceLink}" target="_blank" class="text-primary small">Read more</a>` : ""}
-                </div>
-            `;
+        <div class="article-card border p-2 mb-2" 
+             style="width: 100%; cursor: pointer; display: flex; flex-direction: column; gap: 4px;" 
+             onclick="window.open('${post.ArticleSourceLink}', '_blank')">
+             
+            ${post.ArticleTitle ? `<div style="font-weight: bold; color: black; font-size: 0.95rem;">${post.ArticleTitle}</div>` : ""}
+            ${post.ArticleSourceLink ? `<div style="color: gray; font-size: 0.85rem;">${new URL(post.ArticleSourceLink).hostname}</div>` : ""}
+        </div>
+    `;
             }
 
             postsContainer.innerHTML += `
