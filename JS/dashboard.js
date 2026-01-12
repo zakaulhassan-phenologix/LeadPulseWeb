@@ -80,7 +80,8 @@ async function connectLinkedIn() {
         localStorage.setItem("linkedin_oauth_state", result.data.state);
 
         // Redirect in SAME TAB
-        window.open = result.data.auth_url;
+        window.location.href = result.data.auth_url;
+
 
     } catch (err) {
         console.error("LinkedIn connect error:", err);
