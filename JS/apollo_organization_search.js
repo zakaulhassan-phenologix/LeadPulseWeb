@@ -150,8 +150,15 @@ async function searchOrganizations() {
             return;
         }
 
-        // If no organizations
-        if (!res.data.organizations.length) {
+        // Merge organizations and accounts safely
+        const organizations = res.data.organizations || [];
+        const accounts = res.data.accounts || [];
+
+        // Prefer organizations, fallback to accounts
+        const finalResults = organizations.length ? organizations : accounts;
+
+        // If still no results
+        if (!finalResults.length) {
             info.textContent = "No organizations found";
             saveResults([]);
             document.getElementById("prevPage").disabled = true;
@@ -161,16 +168,18 @@ async function searchOrganizations() {
             return;
         }
 
-        // Render organizations
-        renderOrganizations(res.data.organizations);
-        info.textContent = `Showing ${res.data.organizations.length} organization(s)`;
-        saveResults(res.data.organizations);
+        // Render results
+        renderOrganizations(finalResults);
+        info.textContent = `Showing ${finalResults.length} organization(s)`;
+        saveResults(finalResults);
 
         document.getElementById("Page").value = currentPage;
         document.getElementById("pageInfo").textContent = `Page ${currentPage}`;
 
         document.getElementById("prevPage").disabled = currentPage === 1;
-        document.getElementById("nextPage").disabled = res.data.organizations.length < Number(v("PerPage"));
+        document.getElementById("nextPage").disabled =
+            finalResults.length < Number(v("PerPage"));
+
 
     } catch (err) {
         console.error(err);
